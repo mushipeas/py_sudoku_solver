@@ -104,7 +104,8 @@ def print_grid(grid):
     Prints the sudoku grid in a more readable format
     """
     for i in range(9):
-        print(grid[row(i)])
+        line = [x if x else 0 for x in grid[row(i)]]
+        print(line)
 
 
 if __name__ == "__main__":
@@ -159,38 +160,38 @@ if __name__ == "__main__":
 
     ##### ---------------- Component tests ---------------- #####    
 
-    group = {
-        "l1" : range(10),                       # False
-        "l2" : list('abcdefghi'),               # False
-        "l3" : 'abcdwaeda',                     # True
-        "l4" : list('abcdwaeda'),               # True
-        "l5" : [1, 1, 4, 5, 6, None],           # True
-        "l6" : [1, 2, 3, 4, 5, 6, None, None]   # False
-    }
+    # group = {
+    #     "l1" : range(10),                       # False
+    #     "l2" : list('abcdefghi'),               # False
+    #     "l3" : 'abcdwaeda',                     # True
+    #     "l4" : list('abcdwaeda'),               # True
+    #     "l5" : [1, 1, 4, 5, 6, None],           # True
+    #     "l6" : [1, 2, 3, 4, 5, 6, None, None]   # False
+    # }
 
-    for li in group.values():
-        res = duplicates(li)
-        print(res)
+    # for li in group.values():
+    #     res = duplicates(li)
+    #     print(res)
 
-    print(row(0))                               # slice(0, 9, None)
-    print(row(1))                               # slice(9, 18, None)
-    print(row(8))                               # slice(72, 81, None)
-    print(grid[row(1)])                         # [None, None, 4, 7, 6, 9, None, None, None]
-    print(grid2[row(8)])                        # [None, 3, None, None, 2, 9, None, None, None]
+    # print(row(0))                               # slice(0, 9, None)
+    # print(row(1))                               # slice(9, 18, None)
+    # print(row(8))                               # slice(72, 81, None)
+    # print(grid[row(1)])                         # [None, None, 4, 7, 6, 9, None, None, None]
+    # print(grid2[row(8)])                        # [None, 3, None, None, 2, 9, None, None, None]
 
-    print(col(0))                               # slice(0, None, 9)
-    print(col(1))                               # slice(1, None, 9)
-    print(col(8))                               # slice(8, None, 9)
-    print(grid[col(1)])                         # [None, None, None, None, 4, 5, 2, None, None]
-    print(grid2[col(8)])                        # [None, 6, None, None, None, 8, None, 3, None]
+    # print(col(0))                               # slice(0, None, 9)
+    # print(col(1))                               # slice(1, None, 9)
+    # print(col(8))                               # slice(8, None, 9)
+    # print(grid[col(1)])                         # [None, None, None, None, 4, 5, 2, None, None]
+    # print(grid2[col(8)])                        # [None, 6, None, None, None, 8, None, 3, None]
 
-    print(list(square_indexes(0)))              # [0, 1, 2, 9, 10, 11, 18, 19, 20]
-    print(list(square_indexes(1)))              # [3, 4, 5, 12, 13, 14, 21, 22, 23]
-    print(list(square_indexes(8)))              # [60, 61, 62, 69, 70, 71, 78, 79, 80]
-    print(list(square(grid, 1)))                # [None, 8, None, 7, 6, 9, None, 1, 2]
-    print(list(square(grid2, 4)))               # [7, None, None, None, None, None, None, None, 2]
+    # print(list(square_indexes(0)))              # [0, 1, 2, 9, 10, 11, 18, 19, 20]
+    # print(list(square_indexes(1)))              # [3, 4, 5, 12, 13, 14, 21, 22, 23]
+    # print(list(square_indexes(8)))              # [60, 61, 62, 69, 70, 71, 78, 79, 80]
+    # print(list(square(grid, 1)))                # [None, 8, None, 7, 6, 9, None, 1, 2]
+    # print(list(square(grid2, 4)))               # [7, None, None, None, None, None, None, None, 2]
 
-    print(conditions_met(grid))                 # True
+    # print(conditions_met(grid))                 # True
 
 
     ##### ---------------- Full tests ---------------- #####
