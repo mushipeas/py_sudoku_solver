@@ -94,10 +94,10 @@ def square_indexes(sq_no) -> list:
     """
     returns index numbers for appropriate section on grid
     """
-    top_row = (x + sq_no%3 * 3 + sq_no//3 * 27 + row * 9 for row in range(3)
+    indexes = (x + sq_no%3 * 3 + sq_no//3 * 27 + row * 9 for row in range(3)
                                                             for x in range(3))
 
-    return top_row
+    return indexes
 
 def print_grid(grid):
     """
