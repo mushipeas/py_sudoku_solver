@@ -44,8 +44,8 @@ def solve(partial_grid: list) -> list:
 def conditions_met(grid) -> bool:
     """
     Checks (lazy) if the grid fails any of the 27 conditions:
-    - No recurring numbers in any line or column (18)
-    - No recurring numbers in any square region (9)
+    - No recurring numbers in any row or column (18)
+    - No recurring numbers in any 'square' region (9)
     False if any condition fails, True otherwise
     """
     for i in range(9):
