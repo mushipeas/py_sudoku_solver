@@ -31,7 +31,7 @@ def solve(partial_grid: list) -> list:
 
         if conditions_met(_grid) and _grid[i] <= 9:
             i += 1
-            if i < 81 and _original_grid[i]:
+            while i < 81 and _original_grid[i]:
                 i += 1
 
         else:
