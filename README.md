@@ -6,7 +6,48 @@ By using iteration, we can avoid any need for tail-call optimisation in a recurs
 
 Written for and tested on Python 3.7.5
 
-## Useage
+## Running from cmd-line:
+
+### Usage
+    usage: py_sudoku_solver.py [-h] GRID
+
+    Backtracking solver for a sudoku grid, passed in as any 81 length iterable of
+    strings or numbers Empty items must be none or empty strings / lists Any
+    element outside of the 1-9 range will be replaced with None Prints the solved
+    grid, if successful. Otherwise states not solvable.
+
+    positional arguments:
+    GRID        String representing unsolved grid of len(81). Empties must be
+                given as 0's. Spaces and brackets will be ignored.
+                ie. '[1,2,0,5...3,5]' or '1205...35'
+
+
+### Example
+    >python py_sudoku_solver.py "[2, 0, 9, 0, 8, 0, 5, 0, 0, 0, 0, 4, 7, 6, 9, 0, 0, 0, 3, 0, 0, 0, 1, 2, 0, 4, 0, 0, 0, 3, 6, 0, 0, 0, 5, 
+    4, 0, 4, 0, 0, 0, 0, 0, 8, 0, 8, 5, 0, 0, 0, 7, 6, 0, 0, 0, 2, 0, 8, 7, 0, 0, 0, 9, 0, 0, 0, 1, 9, 6, 2, 0, 0, 0, 0, 5, 0, 4, 0, 1, 0, 8]"
+    Input read as:
+    [2, 0, 9, 0, 8, 0, 5, 0, 0]
+    [0, 0, 4, 7, 6, 9, 0, 0, 0]
+    [3, 0, 0, 0, 1, 2, 0, 4, 0]
+    [0, 0, 3, 6, 0, 0, 0, 5, 4]
+    [0, 4, 0, 0, 0, 0, 0, 8, 0]
+    [8, 5, 0, 0, 0, 7, 6, 0, 0]
+    [0, 2, 0, 8, 7, 0, 0, 0, 9]
+    [0, 0, 0, 1, 9, 6, 2, 0, 0]
+    [0, 0, 5, 0, 4, 0, 1, 0, 8]
+    Solution required 2479 iterations
+    Solved!
+    [2, 6, 9, 3, 8, 4, 5, 1, 7]
+    [5, 1, 4, 7, 6, 9, 8, 2, 3]
+    [3, 8, 7, 5, 1, 2, 9, 4, 6]
+    [1, 9, 3, 6, 2, 8, 7, 5, 4]
+    [7, 4, 6, 9, 5, 1, 3, 8, 2]
+    [8, 5, 2, 4, 3, 7, 6, 9, 1]
+    [6, 2, 1, 8, 7, 5, 4, 3, 9]
+    [4, 3, 8, 1, 9, 6, 2, 7, 5]
+    [9, 7, 5, 2, 4, 3, 1, 6, 8]
+
+## Useage as part of a module:
 
 ### solve()
 The main function in the script is `solve()` which takes an iterable of the sudoku elements as an input, and returns a completed list.
@@ -19,9 +60,13 @@ Empty items in the input must be `None` or empty strings / lists.
 Any element outside of the 1-9 range will also be replaced with `None` by the function.
 
 ### print_grid()
-The `print_grid()` function can display the list in a more viewable form:
+The `printable_grid()` function can generate the list in a more viewable form:
 
-    py_soduku_solver.print_grid(grid: iter) -> None
+    py_soduku_solver.printable_grid(grid: iter) -> list[lists]
+
+Useable as:
+
+    print(*printable_grid(grid), sep='\n')
 
 Which outputs:
 

@@ -111,4 +111,33 @@ def printable_grid(grid):
     return square_grid
 
 if __name__ == "__main__":
-    pass
+    import argparse
+
+    parser = argparse.ArgumentParser(description='''
+    Backtracking solver for a sudoku grid, passed in as any 81 length iterable of strings or numbers
+    Empty items must be none or empty strings / lists
+    Any element outside of the 1-9 range will be replaced with None
+    Prints the solved grid, if successful. Otherwise states not solvable.
+    ''')
+
+    parser.add_argument("GRID", help="""
+    String representing unsolved grid of len(81). Empties must be given as 0's. Spaces and brackets will be ignored.
+    ie. '[1,2,0,5...3,5]' or '1205...35'
+    """, type=list)
+
+    args = parser.parse_args()
+
+    try:
+        grid = [int(x) for x in args.GRID if x not in '[ ,]']
+    except ValueError:
+        print('Please review input argument. See help for syntax.')
+    else:
+        print('Input read as:')
+        print(*printable_grid(grid), sep='\n')
+        try:
+            solved_grid = solve(grid)
+        except:
+            print('Grid is unsolvable. Please check the input again.')
+        else:
+            print('Solved!')
+            print(*printable_grid(solved_grid), sep='\n')
