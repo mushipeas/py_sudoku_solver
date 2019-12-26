@@ -11,10 +11,8 @@ Written for and tested on Python 3.7.5
 ### Usage
     usage: py_sudoku_solver.py [-h] GRID
 
-    Backtracking solver for a sudoku grid, passed in as any 81 length iterable of
-    strings or numbers Empty items must be none or empty strings / lists Any
-    element outside of the 1-9 range will be replaced with None Prints the solved
-    grid, if successful. Otherwise states not solvable.
+    Backtracking iterative solver for a sudoku grid.
+    Prints the solved grid, if successful. Otherwise states not solvable.
 
     positional arguments:
     GRID        String representing unsolved grid of len(81). Empties must be

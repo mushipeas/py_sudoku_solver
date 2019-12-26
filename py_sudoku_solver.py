@@ -114,9 +114,7 @@ if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(description='''
-    Backtracking solver for a sudoku grid, passed in as any 81 length iterable of strings or numbers
-    Empty items must be none or empty strings / lists
-    Any element outside of the 1-9 range will be replaced with None
+    Backtracking iterative solver for a sudoku grid.
     Prints the solved grid, if successful. Otherwise states not solvable.
     ''')
 
