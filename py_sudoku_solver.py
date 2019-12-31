@@ -8,8 +8,8 @@ def solve(partial_grid: list) -> list:
     Any element outside of the 1-9 range will be replaced with None
     Returns solved grid, as a list of len 81 if solvable, else None
     """
-    _original_grid = [int(x) if x and int(x) < 10 and int(x) > 0 else None for x in partial_grid]
-    _grid = list(_original_grid)
+    original_grid = [int(x) if x and int(x) < 10 and int(x) > 0 else None for x in partial_grid]
+    grid = list(original_grid)
 
     i = 0
     iterations = 0
@@ -17,28 +17,28 @@ def solve(partial_grid: list) -> list:
     while i >= 0 and i < 81:
         iterations += 1
 
-        if not _grid[i]:
-            _grid[i] = 1
+        if not grid[i]:
+            grid[i] = 1
 
 
-        if _grid[i] > 9:
-            _grid[i] = None
+        if grid[i] > 9:
+            grid[i] = None
             i -= 1
-            while _original_grid[i] and i:
+            while original_grid[i] and i:
                 i -= 1
-            _grid[i] += 1
+            grid[i] += 1
 
 
-        if conditions_met(_grid) and _grid[i] <= 9:
+        if conditions_met(grid) and grid[i] <= 9:
             i += 1
-            while i < 81 and _original_grid[i]:
+            while i < 81 and original_grid[i]:
                 i += 1
 
         else:
-            _grid[i] += 1
+            grid[i] += 1
     
     print("Solution required {} iterations".format(iterations))
-    return _grid
+    return grid
 
 
 def conditions_met(grid) -> bool:
@@ -59,8 +59,8 @@ def duplicates(group) -> bool:
     """
     Checks input for duplicates (not inc. Nones)
     """
-    _group = (x for x in group if x)
-    for x, y in combinations(_group, 2):
+    group = (x for x in group if x)
+    for x, y in combinations(group, 2):
         if x == y:
             return True
     
