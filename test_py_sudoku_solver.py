@@ -1,7 +1,7 @@
 import unittest
 import types
 
-from py_sudoku_solver import solve, conditions_met, duplicates, row, col, square, square_indexes, printable_grid
+from py_sudoku_solver import solve, all_conditions_met, conditions_met, calc_subgroup_indices, duplicates, row, col, square, square_indexes, printable_grid
 
     
     ##### ---------------- Test grids ---------------- #####    
@@ -76,23 +76,57 @@ class TestDuplicates(unittest.TestCase):
         res = duplicates(arg)
         self.assertFalse(res)
 
-class TestConditionsMet(unittest.TestCase):
+class TestAllConditionsMet(unittest.TestCase):
 
     def test_unfinished_grid(self):
-        res = conditions_met(list(grid_one))
+        res = all_conditions_met(list(grid_one))
         self.assertTrue(res)
 
-        
     def test_finished_grid(self):
-        res = conditions_met(list(grid_one_solved))
+        res = all_conditions_met(list(grid_one_solved))
         self.assertTrue(res)
 
-        
     def test_wrong_grid(self):
         self.grid_one_wrong = list(grid_one)
         self.grid_one_wrong[10] = 2
-        res = conditions_met(self.grid_one_wrong)
+        res = all_conditions_met(self.grid_one_wrong)
         self.assertFalse(res)
+
+class TestConditionsMet(unittest.TestCase):
+    
+    def test_unfinished_grid_i1(self):
+        res = conditions_met(list(grid_one), 1)
+        self.assertTrue(res)
+
+    def test_finished_grid_i1(self):
+        res = conditions_met(list(grid_one_solved),1)
+        self.assertTrue(res)
+
+    def test_wrong_grid_i10(self):
+        self.grid_one_wrong = list(grid_one)
+        self.grid_one_wrong[10] = 2
+        res = conditions_met(self.grid_one_wrong, 10)
+        self.assertFalse(res)
+
+class TestCalcSubgroupIndices(unittest.TestCase):
+
+    def test_index_1(self):
+        index = 1
+        corr_row_i, corr_col_i, corr_sqr_i = (0, 1, 0)
+        row_i, col_i, sqr_i = calc_subgroup_indices(index)
+        self.assertEqual((row_i, col_i, sqr_i), (corr_row_i, corr_col_i, corr_sqr_i))
+
+    def test_index_40(self):
+        index = 40
+        corr_row_i, corr_col_i, corr_sqr_i = (4, 4, 4)
+        row_i, col_i, sqr_i = calc_subgroup_indices(index)
+        self.assertEqual((row_i, col_i, sqr_i), (corr_row_i, corr_col_i, corr_sqr_i))
+
+    def test_index_80(self):
+        index = 80
+        corr_row_i, corr_col_i, corr_sqr_i = (8, 8, 8)
+        row_i, col_i, sqr_i = calc_subgroup_indices(index)
+        self.assertEqual((row_i, col_i, sqr_i), (corr_row_i, corr_col_i, corr_sqr_i))
 
 class TestRow(unittest.TestCase):
 

@@ -29,7 +29,7 @@ def solve(partial_grid: list) -> list:
             grid[i] += 1
 
 
-        if conditions_met(grid) and grid[i] <= 9:
+        if conditions_met(grid, i) and grid[i] <= 9:
             i += 1
             while i < 81 and original_grid[i]:
                 i += 1
@@ -41,7 +41,7 @@ def solve(partial_grid: list) -> list:
     return grid
 
 
-def conditions_met(grid) -> bool:
+def all_conditions_met(grid) -> bool:
     """
     Checks (lazy) if the grid fails any of the 27 conditions:
     - No recurring numbers in any row or column (18)
@@ -54,6 +54,31 @@ def conditions_met(grid) -> bool:
     else:
         return True
 
+def conditions_met(grid, index) -> bool:
+    """
+    Checks (lazy) if the grid fails any of the 3 of 27 conditions relevant
+    to the element(index) of the grid:
+    - No recurring numbers in any row or column (2 of 18)
+    - No recurring numbers in any 'square' region (1 of 9)
+    False if any condition fails, True otherwise
+    """
+    i, j, k = calc_subgroup_indices(index)
+
+    if duplicates(grid[row(i)]) or duplicates(grid[col(j)]) or duplicates(square(grid, k)):
+        return False
+    else:
+        return True
+
+def calc_subgroup_indices(index) -> (int, int, int):
+    """
+    Returns the row, col and square indices that the element
+    at (index) is part of.
+    """
+    row_i = index // 9
+    col_i = index % 9
+    sqr_i  = index // 9 // 3 * 3 + index % 9 // 3
+
+    return row_i, col_i, sqr_i
 
 def duplicates(group) -> bool:
     """
