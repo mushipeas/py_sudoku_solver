@@ -145,12 +145,12 @@ if __name__ == "__main__":
         Prints the solved grid, if successful. Otherwise states not solvable.
         """)
     parser.add_argument(
-        "GRID", help=
-        """String representing unsolved grid of len(81).
-        Empties must be given as 0's.
-        Spaces, commas and brackets will be ignored.
-        ie. '[1,2,0,5...3,5]' or '1205...35'.
-        """,
+        "GRID",
+        help="""String representing unsolved grid of len(81).
+            Empties must be given as 0's.
+            Spaces, commas and brackets will be ignored.
+            ie. '[1,2,0,5...3,5]' or '1205...35'.
+            """,
         type=list)
     args = parser.parse_args()
 
