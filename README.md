@@ -16,7 +16,7 @@ Written for and tested on Python 3.7.5
 
     positional arguments:
     GRID        String representing unsolved grid of len(81). Empties must be
-                given as 0's. Spaces and brackets will be ignored.
+                given as 0's. Spaces, commas and brackets will be ignored.
                 ie. '[1,2,0,5...3,5]' or '1205...35'
 
 

@@ -2,6 +2,7 @@
 
 __version__ = "0.1"
 __author__ = "Muj Zaidi"
+__all__ = ["solve", "printable_grid"]
 
 from itertools import combinations, chain
 
@@ -83,7 +84,7 @@ def calc_subgroup_indices(index) -> (int, int, int):
     """
     row_i = index // 9
     col_i = index % 9
-    sqr_i  = index // 9 // 3 * 3 + index % 9 // 3
+    sqr_i = row_i//3 * 3 + col_i//3
     return row_i, col_i, sqr_i
 
 
@@ -102,7 +103,7 @@ def row(row_no) -> slice:
     """
     start = 0 + row_no * 9
     stop = 9 + row_no * 9
-    return slice(start,stop)
+    return slice(start, stop)
 
 
 def col(col_no) -> slice:
@@ -120,7 +121,7 @@ def square(grid, sq_no) -> object:
 
 
 def square_indices(sq_no) -> list:
-    """Returns index numbers for appropriate section on grid."""
+    """Returns element index numbers for appropriate section on grid."""
     indices = (x + sq_no%3 * 3 + sq_no//3 * 27 + row * 9 for row in range(3)
                                                             for x in range(3))
     return indices
@@ -147,7 +148,7 @@ if __name__ == "__main__":
         "GRID", help=
         """String representing unsolved grid of len(81).
         Empties must be given as 0's.
-        Spaces and brackets will be ignored.
+        Spaces, commas and brackets will be ignored.
         ie. '[1,2,0,5...3,5]' or '1205...35'.
         """,
         type=list)
@@ -162,7 +163,7 @@ if __name__ == "__main__":
         print(*printable_grid(grid), sep="\n")
         try:
             solved_grid = solve(grid)
-        except:
+        except (IndexError, TypeError):
             print("Grid is unsolvable. Please check the input again.")
         else:
             print("Solved!")
