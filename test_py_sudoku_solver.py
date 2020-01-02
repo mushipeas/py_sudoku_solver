@@ -1,9 +1,8 @@
 import unittest
 import types
 
-from py_sudoku_solver import solve, all_conditions_met, conditions_met, calc_subgroup_indices, duplicates, row, col, square, square_indexes, printable_grid
+from py_sudoku_solver import solve, all_conditions_met, conditions_met, calc_subgroup_indices, duplicates, row, col, square, square_indices, printable_grid
 
-    
     ##### ---------------- Test grids ---------------- #####    
 
 grid_one = [
@@ -54,7 +53,6 @@ grid_two_solved = [
     7, 3, 6, 5, 2, 9, 8, 1, 4
 ]
 
-
     ##### ---------------- Component tests ---------------- #####    
 
 class TestDuplicates(unittest.TestCase):
@@ -69,12 +67,11 @@ class TestDuplicates(unittest.TestCase):
         self.assertTrue(res)
 
     def test_w_dupe_Nones(self):
-        """
-        None's should be ignored by the function
-        """
+        """None's should be ignored by the function."""
         arg = [1, 2, 3, 4, 5, 6, None, None]
         res = duplicates(arg)
         self.assertFalse(res)
+
 
 class TestAllConditionsMet(unittest.TestCase):
 
@@ -92,6 +89,7 @@ class TestAllConditionsMet(unittest.TestCase):
         res = all_conditions_met(self.grid_one_wrong)
         self.assertFalse(res)
 
+
 class TestConditionsMet(unittest.TestCase):
     
     def test_unfinished_grid_i1(self):
@@ -107,6 +105,7 @@ class TestConditionsMet(unittest.TestCase):
         self.grid_one_wrong[10] = 2
         res = conditions_met(self.grid_one_wrong, 10)
         self.assertFalse(res)
+
 
 class TestCalcSubgroupIndices(unittest.TestCase):
 
@@ -128,12 +127,14 @@ class TestCalcSubgroupIndices(unittest.TestCase):
         row_i, col_i, sqr_i = calc_subgroup_indices(index)
         self.assertEqual((row_i, col_i, sqr_i), (corr_row_i, corr_col_i, corr_sqr_i))
 
+
 class TestRow(unittest.TestCase):
 
     def test_row(self):
         res = row(1)
         correct_res = slice(9, 18, None)
         self.assertEqual(res, correct_res)
+
 
 class TestCol(unittest.TestCase):
 
@@ -142,12 +143,11 @@ class TestCol(unittest.TestCase):
         correct_res = slice(1, None, 9)
         self.assertEqual(res, correct_res)
 
+
 class TestSquare(unittest.TestCase):
 
     def test_square_is_gen(self):
-        """
-        square should return a generator obj
-        """
+        """square should return a generator obj."""
         res = isinstance(square(grid_one, 1), types.GeneratorType)
         self.assertTrue(res)
 
@@ -162,19 +162,18 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(res, correct_res)
 
 
-class TestSquareIndexes(unittest.TestCase):
+class TestSquareIndices(unittest.TestCase):
 
     def test_square_ind_is_gen(self):
-        """
-        square_indexes should return a generator obj
-        """
-        res = isinstance(square_indexes(1), types.GeneratorType)
+        """square_indices should return a generator obj."""
+        res = isinstance(square_indices(1), types.GeneratorType)
         self.assertTrue(res)
 
     def test_square_ind(self):
-        res = list(square_indexes(1))
+        res = list(square_indices(1))
         correct_res = [3, 4, 5, 12, 13, 14, 21, 22, 23]
         self.assertEqual(res, correct_res)
+
 
 class TestPrintableGrid(unittest.TestCase):
 
@@ -197,8 +196,7 @@ class TestSolve(unittest.TestCase):
         self.assertEqual(res, list(grid_two_solved))
 
     def test_solve_unsolvable(self):
-        """
-        Currently the solve() function just fails when an unsolvable array is added.
+        """Currently the solve() function just fails when an unsolvable array is added.
         This needs to be more graceful. Maybe return None?
         """
         with self.assertRaises(IndexError):
@@ -208,5 +206,5 @@ class TestSolve(unittest.TestCase):
             solve(range(81))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
