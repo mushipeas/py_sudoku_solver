@@ -13,9 +13,13 @@ def solve(partial_grid: list) -> list:
 
     i = 0
     iterations = 0
+    MAX_ITERATIONS = 100000
 
     while i >= 0 and i < 81:
         iterations += 1
+
+        if iterations >= MAX_ITERATIONS:
+            break
 
         if not grid[i]:
             grid[i] = 1
@@ -36,9 +40,9 @@ def solve(partial_grid: list) -> list:
 
         else:
             grid[i] += 1
-    
-    print("Solution required {} iterations".format(iterations))
-    return grid
+    else:
+        print("Solution required {} iterations.".format(iterations))
+        return grid
 
 
 def all_conditions_met(grid) -> bool:
