@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 from itertools import combinations, chain
 
+MAX_ITERATIONS = 100000
+
+
 def solve(partial_grid: list) -> list:
     """
     Backtracking solver for a sudoku grid, passed in as any 81 length iterable of strings or numbers
@@ -13,7 +16,6 @@ def solve(partial_grid: list) -> list:
 
     i = 0
     iterations = 0
-    MAX_ITERATIONS = 100000
 
     while i >= 0 and i < 81:
         iterations += 1
