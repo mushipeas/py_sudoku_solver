@@ -1,5 +1,7 @@
 # `py_sudoku_solver`
 
+![tests](https://github.com/mushipeas/py_sudoku_solver/actions/workflows/tests.yml/badge.svg)
+
 A brute-force sudoku solver, using iteration and backtracking.
 
 By using iteration, we can avoid any need for tail-call optimisation in a recursive solution.
