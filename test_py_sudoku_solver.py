@@ -1,7 +1,7 @@
 import unittest
 import types
 
-from py_sudoku_solver import solve, all_conditions_met, conditions_met, calc_subgroup_indices, duplicates, row, col, square, square_indices, printable_grid
+from .py_sudoku_solver import solve, all_conditions_met, conditions_met, calc_subgroup_indices, duplicates, row, col, square, square_indices, printable_grid
 
     ##### ---------------- Test grids ---------------- #####    
 
